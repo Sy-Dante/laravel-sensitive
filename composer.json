@@ -1,0 +1,21 @@
+{
+    "name": "sy-dante/laravel-sensitive",
+    "description": "敏感词检查及过滤扩展包，采用 DFA 算法",
+    "type": "library",
+    "require": {
+        "php": "^7.3",
+        "ext-mbstring": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sy-Dante",
+            "email": "sy40520@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sydante\\LaravelSensitive\\": "src"
+        }
+    }
+}
