@@ -14,7 +14,7 @@ use Sydante\LaravelSensitive\Exceptions\FileReadException;
 class Sensitive
 {
     /**
-     * 替换码
+     * 替换字符串
      *
      * @var string
      */
@@ -70,7 +70,7 @@ class Sensitive
         $this->useCache = $config['cache'] ?? false;
 
         if (isset($config['replace_code'])) {
-            $this->replaceCode($config['replace_code']);
+            $this->setReplaceCode($config['replace_code']);
         }
 
         if (isset($config['disturbs'])) {
@@ -117,7 +117,7 @@ class Sensitive
      *
      * @return Sensitive
      */
-    public function replaceCode(string $replaceCode): self
+    public function setReplaceCode(string $replaceCode): self
     {
         $this->replaceCode = $replaceCode;
 
