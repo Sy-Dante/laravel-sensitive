@@ -233,6 +233,10 @@ class Sensitive
     {
         $words = trim($words, " \t\n\r\0\x0B'\"`");
 
+        if (!$words) {
+            return;
+        }
+
         $nowWords = &$this->trieTreeMap;
 
         $len = mb_strlen($words);
