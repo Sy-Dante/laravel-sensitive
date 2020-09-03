@@ -22,7 +22,10 @@
         "laravel": {
             "providers": [
                 "Sydante\\LaravelSensitive\\ServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Sensitive": "Sydante\\LaravelSensitive\\Facades\\Sensitive"
+            }
         }
     },
     "minimum-stability": "stable",
