@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Cache;
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 use Sydante\LaravelSensitive\Exceptions\CacheException;
 use Sydante\LaravelSensitive\Exceptions\FileReadException;
+use Sydante\LaravelSensitive\Facades\Sensitive as SensitiveFacade;
 use Sydante\LaravelSensitive\Sensitive;
 use Sydante\LaravelSensitive\SensitiveCacheInterface;
 
@@ -183,5 +184,14 @@ class SensitiveTest extends TestCase
         $text = $s->filter('你是笨蛋大sb嘛');
 
         self::assertEquals('你是笨蛋大o0o0嘛', $text);
+    }
+
+    public function testFacade(): void
+    {
+        SensitiveFacade::addWords(['sb']);
+
+        $text = SensitiveFacade::filter('你是笨蛋大sb嘛');
+
+        self::assertEquals('你是笨蛋大**嘛', $text);
     }
 }
