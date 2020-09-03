@@ -82,7 +82,6 @@ class SensitiveTest extends TestCase
      */
     public function testSearch(): void
     {
-        // 通过 config 使用 addWords
         $s = new Sensitive(['words' => ['笨蛋', 'sb', 'sss']]);
 
         $words = $s->search('你是笨蛋大sb嘛');
@@ -155,11 +154,34 @@ class SensitiveTest extends TestCase
      */
     public function testFilter(): void
     {
-        // 通过 config 使用 addWords
         $s = new Sensitive(['words' => ['笨蛋', 'sb', 'sss']]);
 
         $text = $s->filter('你是笨蛋大sb嘛');
 
         self::assertEquals('你是**大**嘛', $text);
+    }
+
+    /**
+     * @throws CacheException
+     * @throws FileReadException
+     */
+    public function testSetReplaceCode(): void
+    {
+        // 通过 config 使用 replace_code
+        $s = new Sensitive([
+            'words' => ['sb'],
+            'replace_code' => '_',
+        ]);
+
+        $text = $s->filter('你是笨蛋大sb嘛');
+
+        self::assertEquals('你是笨蛋大__嘛', $text);
+
+        // 动态修改 replace_code
+        $s->setReplaceCode('o0');
+
+        $text = $s->filter('你是笨蛋大sb嘛');
+
+        self::assertEquals('你是笨蛋大o0o0嘛', $text);
     }
 }
