@@ -1,5 +1,5 @@
 {
-    "name": "sy-dante/laravel-sensitive",
+    "name": "sydante/laravel-sensitive",
     "description": "敏感词检查及过滤扩展包，采用 DFA 算法",
     "type": "library",
     "require": {
@@ -17,5 +17,13 @@
         "psr-4": {
             "Sydante\\LaravelSensitive\\": "src"
         }
-    }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sydante\\LaravelSensitive\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
 }

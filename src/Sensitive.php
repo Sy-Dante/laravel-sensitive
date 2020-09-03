@@ -63,7 +63,7 @@ class Sensitive
      * @throws FileReadException
      * @throws CacheException
      */
-    public function __construct(?array $config)
+    public function __construct(?array $config = null)
     {
         $this->config = $config;
 
@@ -73,8 +73,8 @@ class Sensitive
             $this->replaceCode($config['replace_code']);
         }
 
-        if (isset($config['interference'])) {
-            $this->interference($config['interference']);
+        if (isset($config['disturbs'])) {
+            $this->setDisturbs($config['disturbs']);
         }
 
         // 是否使用缓存
@@ -131,7 +131,7 @@ class Sensitive
      *
      * @return Sensitive
      */
-    public function interference(array $disturbList = []): self
+    public function setDisturbs(array $disturbList = []): self
     {
         $this->disturbList = $disturbList;
 
