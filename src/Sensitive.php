@@ -274,6 +274,10 @@ class Sensitive
      */
     private function getWordsFromFile(string $filename): Generator
     {
+        if (!file_exists($filename)) {
+            throw new FileReadException("file [{$filename}] not exists");
+        }
+
         $handle = fopen($filename, 'rb');
 
         if (!$handle) {
