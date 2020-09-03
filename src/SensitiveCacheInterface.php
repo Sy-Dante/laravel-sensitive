@@ -9,4 +9,6 @@ interface SensitiveCacheInterface
     public function get(): ?array;
 
     public function set(array $trieTreeMap): bool;
+
+    public function clear(): bool;
 }

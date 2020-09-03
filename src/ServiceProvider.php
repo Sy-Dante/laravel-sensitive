@@ -2,6 +2,9 @@
 
 namespace Sydante\LaravelSensitive;
 
+use Sydante\LaravelSensitive\Commands\ClearCache;
+use Sydante\LaravelSensitive\Commands\UpdateCache;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -21,6 +24,13 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->publishes([
             __DIR__ . '/config/sensitive.php' => config_path('sensitive.php'),
         ]);
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                UpdateCache::class,
+                ClearCache::class,
+            ]);
+        }
     }
 
     /**

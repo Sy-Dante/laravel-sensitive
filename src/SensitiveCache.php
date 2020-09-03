@@ -22,4 +22,9 @@ class SensitiveCache implements SensitiveCacheInterface
     {
         return Cache::forever($this->key, $trieTreeMap);
     }
+
+    public function clear(): bool
+    {
+        return Cache::forget($this->key);
+    }
 }

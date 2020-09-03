@@ -157,7 +157,7 @@ class Sensitive
     }
 
     /**
-     * 使用配置中的设置重置当前的敏感词库集合，并更新缓存
+     * 使用配置中的设置重置当前的敏感词库集合
      *
      * @return Sensitive
      * @throws FileReadException
@@ -187,6 +187,25 @@ class Sensitive
         $this->trieTreeMap = [];
 
         return $this;
+    }
+
+    /**
+     * 清理敏感词库集合缓存
+     *
+     * @return bool
+     * @throws CacheException
+     */
+    public function clearCache(): bool
+    {
+        if ($this->useCache) {
+            if ($this->cache->clear()) {
+                return true;
+            }
+
+            throw new CacheException('clear cache failed');
+        }
+
+        return false;
     }
 
     /**
